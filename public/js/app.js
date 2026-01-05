@@ -3,7 +3,7 @@
  const output = document.getElementById("rating-value");
  let currentRating = 0;
  function setRating(rating) {
-    
+ 
    currentRating = rating;
    output.textContent = rating;
    stars.forEach((star) => {
