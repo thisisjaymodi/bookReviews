@@ -1,10 +1,10 @@
-// // Star Rating 
+// Star Rating 
  const stars = document.querySelectorAll("#rating i");
- const output = document.getElementById("rating-value");
+ const output = document.querySelectorAll("#rating-value");
+
  let currentRating = 0;
  function setRating(rating) {
- 
-   currentRating = rating;
+   currentRating = Number(rating);
    output.textContent = rating;
    stars.forEach((star) => {
      const value = Number(star.dataset.value);
@@ -12,8 +12,9 @@
      star.classList.toggle("bi-star", value > rating); /* Rest others keep empty stars */
    });
  }
-
-setRating(3);
+output.forEach(o => {
+  setRating(o.innerText);
+});
 
 //  stars.forEach((star) => {
 //    star.addEventListener("mouseenter", () =>
@@ -42,7 +43,12 @@ async function getResponse() {
 }
 getResponse();
 
-
+function confirmRedirect(){
+ const ok = confirm("Would you like to go to main page?");
+ if(ok){
+   window.location.href = "/";
+ }
+}
 
 
 

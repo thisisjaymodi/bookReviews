@@ -1,0 +1,55 @@
+<%- include("partials\\header.ejs") %>
+    <main>
+        <div class="album py-5 bg-body-tertiary">
+            <div class="container my-5">
+                <!-- Back to Main -->
+                <div class="display-3 text-center under my-2">Edit Review</div>
+                <div class="my-3">
+                    <button type="button" class="btn btn-secondary" onclick="confirmRedirect()"><i class="bi bi-arrow-left-circle"></i>
+                        Main Page</button>
+                </div>
+                <form action="/submit/postId" method="post">
+                    <!-- Image -->
+                    <div class="row mb-3">
+                        <picture>
+                            <!-- <source srcset="..." type="image/svg+xml"> -->
+                            <img src="/images/image.jpg" class="img-fluid img-thumbnail" height="300" width="300"
+                                alt="Book-image">
+                        </picture>
+                    </div>
+                    <!-- Title -->
+                    <div class="mb-3 form-floating">
+                        <input type="text" class="form-control" id="book-title" name="book-title" autofocus
+                            placeholder="enter Value" autocomplete="off">
+                        <label for="book-title">Book Title</label>
+                    </div>
+                    <!-- Review -->
+                    <div class="mb-3 form-floating">
+                        <textarea class="form-control" id="book-review" name="book-review" placeholder="enter Value"
+                            style="height: 200px" autocomplete="off"></textarea>
+                        <label for="book-review">Book Review</label>
+                    </div>
+                    <!-- Ratings -->
+                    <div class="mb-3">
+                        <label for="rating">Book Ratings</label>
+                        <div class="d-flex align-items-center gap-2">
+                            <div id="rating" class="rating text-secondary fs-4">
+                                <i class="bi bi-star" data-value="1"></i>
+                                <i class="bi bi-star" data-value="2"></i>
+                                <i class="bi bi-star" data-value="3"></i>
+                                <i class="bi bi-star" data-value="4"></i>
+                                <i class="bi bi-star" data-value="5"></i>
+                            </div>
+                            <div class="text-muted"><span id="rating-value" name="book-ratings">0</span> Star</div>
+                        </div>
+                    </div>
+                    <!-- Submit -->
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-outline-secondary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </main>
+    <%- include("partials\\footer.ejs") %>

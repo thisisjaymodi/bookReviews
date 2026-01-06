@@ -1,0 +1,58 @@
+<%- include("partials\\header.ejs") %>
+    <main>
+        <div class="album py-5 bg-body-tertiary">
+            <div class="container my-5">
+                <!-- Back to Main -->
+                <div class="display-3 text-center my-2">View Review</div>
+                <div class="my-3">
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='/'"><i class="bi bi-arrow-left-circle"></i>
+                        Main Page</button>
+                </div>
+                <div class="container my-5">
+                    <!-- title -->
+                    <div class="row">
+                        <h1 class="display-6 text-muted">Book Title</h1>
+                    </div>
+                    <!-- Image -->
+                    <div class="row">
+                        <picture>
+                            <!-- <source srcset="..." type="image/svg+xml"> -->
+                            <img src="/images/image.jpg" class="img-fluid img-thumbnail" height="300" width="300"
+                                alt="Book-image">
+                        </picture>
+                    </div>
+                    <!-- content -->
+                    <div class="row">
+                        <label for="rating" class="lead mt-3">Book Review</label>
+                        <p class="text-muted">
+                            This is a lead paragraph. It stands out from regular paragraphs.
+                        </p>
+                    </div>
+                    <!-- rating -->
+                    <div class="row">
+                        <div class="mb-3">
+                            <label for="rating" class="lead">Book Ratings</label>
+                            <div class="d-flex align-items-center gap-2">
+                                <div id="rating" class="rating text-secondary fs-4">
+                                    <i class="bi bi-star" data-value="1"></i>
+                                    <i class="bi bi-star" data-value="2"></i>
+                                    <i class="bi bi-star" data-value="3"></i>
+                                    <i class="bi bi-star" data-value="4"></i>
+                                    <i class="bi bi-star" data-value="5"></i>
+                                </div>
+                                <div class="text-muted"><span id="rating-value" name="book-ratings">0</span> Star</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- date -->
+                    <div class="row">
+                        <p class="text-end small">
+                            Last Modified: <span>1 Jan 2002</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <%- include("partials\\footer.ejs") %>

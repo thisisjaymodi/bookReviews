@@ -15,20 +15,13 @@
             <div class="container">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     <!-- start -->
-                    <form id="reviewForm">
+                    <% locals.books.forEach(book => { %>
                     <div class="col">
-                        <div class="card shadow-sm"> 
-                            <svg aria-label="Placeholder: Thumbnail"
-                                class="bd-placeholder-img card-img-top" height="225"
-                                preserveAspectRatio="xMidYMid slice" role="img" width="100%"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%"
-                                    fill="#eceeef" dy=".3em">Book Title</text>
-                            </svg>
+                        <div class="card shadow-sm">
+                            <img src="/images/image.jpg" class="card-img-top" alt="..."> 
                             <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <h5 class="card-title"><%=book.title %></h5>
+                                <p class="card-text"><%=book.bookReview %></p>
                                 <div class="d-flex align-items-center gap-2 my-3">
                                     <div id="rating" class="rating text-secondary fs-4">
                                         <i class="bi bi-star" data-value="1"></i>
@@ -37,22 +30,28 @@
                                         <i class="bi bi-star" data-value="4"></i>
                                         <i class="bi bi-star" data-value="5"></i>
                                     </div>
-                                    <span id="rating-value" class="text-muted">0</span>
+                                    <div class="text-muted"><span id="rating-value"><%=book.bookRatings %></span> Star</div>
                                 </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group"> 
-                                        <button type="submit" id="view" class="btn btn-sm btn-outline-secondary" value="view" formaction="/getReview/bookId">View</button> 
-                                        <button type="submit" id="edit" class="btn btn-sm btn-outline-secondary" value="edit" formaction="/editReview/bookId">Edit</button>
-                                        <button type="submit" id="delete" class="btn btn-sm btn-outline-danger" value="delete" formaction="/deleteReview/bookId">Delete</button> 
-                                    </div> 
-                                        <small class="text-body-secondary">3 Jan 2026</small>
-                                </div>
+                                <form id="reviewForm">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="submit" id="view" class="btn btn-sm btn-outline-secondary" value="view"
+                                                formaction="/view">View</button>
+                                            <button type="submit" id="edit" class="btn btn-sm btn-outline-secondary" value="edit"
+                                                formaction="/edit">Edit</button>
+                                            <button type="submit" id="delete" class="btn btn-sm btn-outline-danger" value="delete"
+                                                formaction="/deleteReview/bookId">Delete</button>
+                                        </div>
+                                        <small class="text-body-secondary text-end"><%=book.lastUpdated %></small>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    </form>
+                    <% }); %>
                     <!-- end -->
                 </div>
+                
             </div>
         </div>
     </main>

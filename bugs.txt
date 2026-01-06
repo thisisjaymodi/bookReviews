@@ -1,0 +1,22 @@
+### Remaining
+    Handle Images
+    Handle DB
+    Handle CRUD items 
+        post, 
+        patch,
+        delete, 
+        get
+    Handle Create new record
+    Build DB schema
+    Error handling on 
+        EJS side, 
+        DB side, 
+        API side
+
+###Bugs
+    Star Ratings under 
+        index, 
+        view, 
+        edit
+
+
