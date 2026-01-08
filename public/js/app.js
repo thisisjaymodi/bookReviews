@@ -1,36 +1,3 @@
-// Star Rating 
-//  const stars = document.querySelectorAll("#rating i");
-//  const output = document.querySelectorAll("#rating-value");
-
-
-
-//  let currentRating = 0;
-//  function setRating(rating) {
-//    currentRating = Number(rating);
-//    output.textContent = rating;
-//    stars.forEach((star) => {
-//      const value = Number(star.dataset.value);
-//      star.classList.toggle("bi-star-fill", value <= rating); /* Fill selected stars */
-//      star.classList.toggle("bi-star", value > rating); /* Rest others keep empty stars */
-//    });
-//  }
-
-// if (window.location.pathname != "/edit") {
-//   output.forEach((o) => {
-//     setRating(o.innerText);
-//   });
-// } else {
-//   output.forEach((o) => {
-//     setRating(o.innerText);
-//   });
-//   stars.forEach((star) => {
-//     star.addEventListener("click", () => {
-//       setRating(Number(star.dataset.value));
-//       output.textContent = Number(star.dataset.value);
-//     });
-//   });
-// }
-
 /* STAR rating */
 const strBlock = document.querySelectorAll(".star-block");
 strBlock.forEach((block) =>{
@@ -75,8 +42,6 @@ strBlock.forEach((block) =>{
 
 });
 
-
-
 /* Edit effects */
 const elements = document.querySelectorAll("#update-review .form-control, #create-review .form-control");
 elements.forEach((ele) =>{  
@@ -84,8 +49,6 @@ elements.forEach((ele) =>{
    ele.defaultValue != ele.value ? ele.classList.add("bg-secondary-subtle") : ele.classList.remove("bg-secondary-subtle");
   });
 });
-
-
 
 /* Facts API via axios */
 async function getResponse() {
@@ -107,6 +70,7 @@ async function getResponse() {
 }
 getResponse();
 
+/* redirect */
 function confirmRedirect(){
  const ok = confirm("Would you like to navigate to main page?");
  if(ok){
@@ -114,8 +78,27 @@ function confirmRedirect(){
  }
 }
 
+/* Deletion */
+function confirmDelete() {
+ 
+  const ok = confirm("Would you like to Delete this book review? data will get deleted permanently!");
+ if(!ok){
+   return false;
+ }
+}
 
 
+/* Read Effects */
+/* If word count is more than 20 words then show read more a tag  */
+// let reviewItems = document.querySelectorAll(".book-review");
 
+// reviewItems.forEach((item) =>{
+//   let newItem =  item.textContent.trim().split(/\s+/);
+//   let newItemLen = newItem.textContent.length;
+//   let dispItem = newItem.slice(0, 20).join(" ");  
+//   if(newItemLen >= 20){
+//     item.innerHTML = `${dispItem}`;
+//       }
+// })
 
 

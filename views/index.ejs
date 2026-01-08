@@ -16,7 +16,7 @@
         </section>
         <div class="album py-5 bg-body-tertiary">
             <div class="container">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="row g-3">
                     <!-- start -->
                     <!-- 
                     Common Items:
@@ -33,14 +33,17 @@
                     </div>
                     <% } %>
                     <% locals.books.length > 0 && locals.books.forEach(book=> { %>
-                        <div class="col">
+                        <div class="col col-md-12 col-lg-4">
                             <div class="card shadow-sm">
-                                <img src="/images/image.jpg" class="card-img-top" alt="book-img-<%=book.bId %>">
+                                <img src="<%= book.bookImage %> " class="card-img-top" alt="book-img-<%=book.bId %>" height="300" width="200">
                                 <div class="card-body">
                                     <h5 class="card-title">
                                         <%=book.title %>
                                     </h5>
-                                    <p class="card-text">
+                                    <p class="card-text small text-muted">
+                                        <%=book.isbn %>
+                                    </p>
+                                    <p class="card-text book-review">
                                         <%=book.bookReview %>
                                     </p>
                                     <!-- /* */ -->
@@ -72,7 +75,7 @@
                                                     formaction="/edit?_method=GET">Edit</button>
                                                 <button type="submit" id="delete-<%= book.bId %>" name="delete"
                                                     class="btn btn-sm btn-outline-danger" data-bookID="<%=book.bId %>"
-                                                    value="<%= book.bId %>"
+                                                    value="<%= book.bId %>" onclick="return confirmDelete()"
                                                     formaction="/delete?_method=DELETE">Delete</button>
                                             </div>
                                             <small class="text-body-secondary text-end">

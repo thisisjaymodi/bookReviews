@@ -1,13 +1,12 @@
 ### Remaining
-    Create new book Reviews
-    Handle Images
-    Handle DB
-    Handle Create new record
-    Build DB schema
+   
+    Be able to sort your book entries by rating and recency.
+    Search 
+    Pagination
+###Bugs
     Error handling on 
         DB side, 
         API side
-    Form Validations required
-###Bugs
-    edit > last updated
+    ejs Form Validations required
+    Read More link, after 10 words,
 

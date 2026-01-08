@@ -9,13 +9,13 @@
                         Main Page</button>
                 </div>
                 <!-- Start -->
-                 <% let { bId, title, bookImage, bookReview, bookRatings, lastUpdated  } = locals.book %>
+                 <% let { bId, title, isbn, bookImage, bookReview, bookRatings, lastUpdated  } = locals.book %>
                 <form id="update-review" action="/update?_method=PATCH" method="post">
                     <!-- Image -->
                     <div class="row mb-3">
                         <picture>
                             <!-- <source srcset="..." type="image/svg+xml"> -->
-                            <img src="/images/image.jpg" class="img-fluid img-thumbnail" height="200" width="200"
+                            <img src="<%= bookImage %>" class="img-fluid img-thumbnail" height="200" width="200"
                                 alt="Book-image">
                         </picture>
                     </div>
@@ -24,6 +24,12 @@
                         <input type="text" class="form-control" id="book-title" name="book-title" autofocus
                             placeholder="enter Value" autocomplete="off" value="<%=title  %>">
                         <label for="book-title">Book Title</label>
+                    </div>
+                    <!-- isbn -->
+                    <div class="mb-3 form-floating">
+                        <input type="number" class="form-control" id="book-isbn" name="book-isbn" autofocus
+                            placeholder="enter ISBN #" autocomplete="off" value="<%=isbn  %>">
+                        <label for="book-isbn">Book ISBN</label>
                     </div>
                     <!-- Review -->
                     <div class="mb-3 form-floating">
