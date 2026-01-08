@@ -3,15 +3,17 @@
         <div class="album py-5 bg-body-tertiary">
             <div class="container my-5">
                 <!-- Back to Main -->
-                <div class="display-3 text-center my-2">View Review</div>
+                <div class="display-3 text-center my-2">View Book Review</div>
                 <div class="my-3">
                     <button type="button" class="btn btn-secondary" onclick="window.location.href='/'"><i class="bi bi-arrow-left-circle"></i>
                         Main Page</button>
                 </div>
+                <!-- start -->
+                <% let {bId, title, bookImage, bookReview, bookRatings, lastUpdated  } = locals.book %>
                 <div class="container my-5">
                     <!-- title -->
                     <div class="row">
-                        <h1 class="display-6 text-muted">Book Title</h1>
+                        <h1 class="display-6 text-muted"><%=title  %></h1>
                     </div>
                     <!-- Image -->
                     <div class="row">
@@ -23,34 +25,34 @@
                     </div>
                     <!-- content -->
                     <div class="row">
-                        <label for="rating" class="lead mt-3">Book Review</label>
-                        <p class="text-muted">
-                            This is a lead paragraph. It stands out from regular paragraphs.
+                        <label for="book-review" class="lead mt-3">Book Review</label>
+                        <p class="text-muted" id="book-review" name="book-review">
+                           <%=bookReview  %>
                         </p>
                     </div>
                     <!-- rating -->
-                    <div class="row">
-                        <div class="mb-3">
-                            <label for="rating" class="lead">Book Ratings</label>
-                            <div class="d-flex align-items-center gap-2">
-                                <div id="rating" class="rating text-secondary fs-4">
-                                    <i class="bi bi-star" data-value="1"></i>
-                                    <i class="bi bi-star" data-value="2"></i>
-                                    <i class="bi bi-star" data-value="3"></i>
-                                    <i class="bi bi-star" data-value="4"></i>
-                                    <i class="bi bi-star" data-value="5"></i>
-                                </div>
-                                <div class="text-muted"><span id="rating-value" name="book-ratings">0</span> Star</div>
+                    <div class="mb-3 star-block">
+                        <label>Book Ratings</label>
+                        <div class="d-flex align-items-center gap-2">
+                            <div id="rating" class="rating text-secondary fs-4">
+                                <i class="bi bi-star" data-value="1"></i>
+                                <i class="bi bi-star" data-value="2"></i>
+                                <i class="bi bi-star" data-value="3"></i>
+                                <i class="bi bi-star" data-value="4"></i>
+                                <i class="bi bi-star" data-value="5"></i>
                             </div>
+                            <div class="text-muted"><span class="rating-text" id="rating-value" value="<%=book.bookRatings %>"><%=bookRatings  %></span> Star</div>
                         </div>
                     </div>
                     <!-- date -->
                     <div class="row">
-                        <p class="text-end small">
-                            Last Modified: <span>1 Jan 2002</span>
+                        <label for="last-updated">Last Modified:</label>
+                        <p class="text-end small" id="last-updated">
+                            <%= lastUpdated %>
                         </p>
                     </div>
                 </div>
+                <!-- end -->
             </div>
         </div>
 

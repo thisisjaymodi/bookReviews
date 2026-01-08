@@ -1,27 +1,91 @@
 // Star Rating 
- const stars = document.querySelectorAll("#rating i");
- const output = document.querySelectorAll("#rating-value");
+//  const stars = document.querySelectorAll("#rating i");
+//  const output = document.querySelectorAll("#rating-value");
 
- let currentRating = 0;
- function setRating(rating) {
-   currentRating = Number(rating);
-   output.textContent = rating;
-   stars.forEach((star) => {
-     const value = Number(star.dataset.value);
-     star.classList.toggle("bi-star-fill", value <= rating); /* Fill selected stars */
-     star.classList.toggle("bi-star", value > rating); /* Rest others keep empty stars */
-   });
- }
-output.forEach(o => {
-  setRating(o.innerText);
+
+
+//  let currentRating = 0;
+//  function setRating(rating) {
+//    currentRating = Number(rating);
+//    output.textContent = rating;
+//    stars.forEach((star) => {
+//      const value = Number(star.dataset.value);
+//      star.classList.toggle("bi-star-fill", value <= rating); /* Fill selected stars */
+//      star.classList.toggle("bi-star", value > rating); /* Rest others keep empty stars */
+//    });
+//  }
+
+// if (window.location.pathname != "/edit") {
+//   output.forEach((o) => {
+//     setRating(o.innerText);
+//   });
+// } else {
+//   output.forEach((o) => {
+//     setRating(o.innerText);
+//   });
+//   stars.forEach((star) => {
+//     star.addEventListener("click", () => {
+//       setRating(Number(star.dataset.value));
+//       output.textContent = Number(star.dataset.value);
+//     });
+//   });
+// }
+
+/* STAR rating */
+const strBlock = document.querySelectorAll(".star-block");
+strBlock.forEach((block) =>{
+    const stars = block.querySelectorAll(".rating i");
+    let output = block.querySelector(".rating-text");
+    let outputEdit = block.querySelector(".rating-value");
+
+    
+   
+ 
+    let currentRating = 0;
+    function setRating(rating) {
+      currentRating = Number(rating);
+      window.location.pathname === "/edit" || window.location.pathname === "/create" ? outputEdit.value = rating : output.textContent = rating;
+      
+      stars.forEach((star) => {
+        const value = Number(star.dataset.value);
+        star.classList.toggle(
+          "bi-star-fill",
+          value <= rating
+        ); /* Fill selected stars */
+        star.classList.toggle(
+          "bi-star",
+          value > rating
+        ); /* Rest others keep empty stars */
+      });
+    }
+
+     if (window.location.pathname != "/edit" && window.location.pathname != "/create" ) setRating(output.textContent);
+    
+    
+     if (window.location.pathname === "/edit" || window.location.pathname === "/create") {
+      setRating(outputEdit.value);
+      stars.forEach((star) => {
+        star.addEventListener("click", () => {  
+          setRating(Number(star.dataset.value));
+          let x = block.querySelector(".dispVal");
+          x.textContent = Number(star.dataset.value); 
+        });
+      });
+    }
+
 });
 
-//  stars.forEach((star) => {
-//    star.addEventListener("mouseenter", () =>
-//      setRating(Number(star.dataset.value))
-//    );
-//    star.addEventListener("click", () => setRating(Number(star.dataset.value)));
-//  });
+
+
+/* Edit effects */
+const elements = document.querySelectorAll("#update-review .form-control, #create-review .form-control");
+elements.forEach((ele) =>{  
+  ele.addEventListener("keyup",(el) =>{
+   ele.defaultValue != ele.value ? ele.classList.add("bg-secondary-subtle") : ele.classList.remove("bg-secondary-subtle");
+  });
+});
+
+
 
 /* Facts API via axios */
 async function getResponse() {
@@ -44,7 +108,7 @@ async function getResponse() {
 getResponse();
 
 function confirmRedirect(){
- const ok = confirm("Would you like to go to main page?");
+ const ok = confirm("Would you like to navigate to main page?");
  if(ok){
    window.location.href = "/";
  }

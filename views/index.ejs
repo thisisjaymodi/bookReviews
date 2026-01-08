@@ -1,11 +1,14 @@
-<%- include("partials\\header.ejs")  %>
+<%- include("partials\\header.ejs") %>
     <main>
         <section class="background-banner">
             <div class="py-5 text-center container">
                 <div class="row py-lg-5">
                     <div class="col-lg-6 col-md-8 mx-auto">
                         <h1 class="fw-light">Book Review Hub</h1>
-                        <p class="lead text-body-secondary">Curated reviews for readers who care about more than just star ratings. Explore detailed thoughts on plot, characters, and writing style, all summarized in a quick, scannable format. Use the cards below to build your next TBR (to‑be‑read) stack.
+                        <p class="lead text-body-secondary">Curated reviews for readers who care about more than just
+                            star ratings. Explore detailed thoughts on plot, characters, and writing style, all
+                            summarized in a quick, scannable format. Use the cards below to build your next TBR
+                            (to‑be‑read) stack.
                         </p>
                     </div>
                 </div>
@@ -15,44 +18,81 @@
             <div class="container">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     <!-- start -->
-                    <% locals.books.forEach(book => { %>
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <img src="/images/image.jpg" class="card-img-top" alt="..."> 
-                            <div class="card-body">
-                                <h5 class="card-title"><%=book.title %></h5>
-                                <p class="card-text"><%=book.bookReview %></p>
-                                <div class="d-flex align-items-center gap-2 my-3">
-                                    <div id="rating" class="rating text-secondary fs-4">
-                                        <i class="bi bi-star" data-value="1"></i>
-                                        <i class="bi bi-star" data-value="2"></i>
-                                        <i class="bi bi-star" data-value="3"></i>
-                                        <i class="bi bi-star" data-value="4"></i>
-                                        <i class="bi bi-star" data-value="5"></i>
-                                    </div>
-                                    <div class="text-muted"><span id="rating-value"><%=book.bookRatings %></span> Star</div>
-                                </div>
-                                <form id="reviewForm">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="submit" id="view" class="btn btn-sm btn-outline-secondary" value="view"
-                                                formaction="/view">View</button>
-                                            <button type="submit" id="edit" class="btn btn-sm btn-outline-secondary" value="edit"
-                                                formaction="/edit">Edit</button>
-                                            <button type="submit" id="delete" class="btn btn-sm btn-outline-danger" value="delete"
-                                                formaction="/deleteReview/bookId">Delete</button>
+                    <!-- 
+                    Common Items:
+                        name = mainly captured by body parser attribute. can be static. req.body => { nameAttr: valAttr }
+                        value = data stored in the field. we can use dynamic value by ejs to pass to backend.
+                        id = dynamic id. like row < %= var % >. For front end JS to use
+                        for = same as with input's "id". For front end JS to use
+                        form action = we can make static unless we want to pass query params inside the request. 
+                            but end points stays static. We can send query params as a request using fetch. 
+                     -->
+                    <% if (!locals.books || locals.books.length === 0) { %>
+                     <div class="col">
+                            No Books Found, Please create a new book record.
+                    </div>
+                    <% } %>
+                    <% locals.books.length > 0 && locals.books.forEach(book=> { %>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img src="/images/image.jpg" class="card-img-top" alt="book-img-<%=book.bId %>">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%=book.title %>
+                                    </h5>
+                                    <p class="card-text">
+                                        <%=book.bookReview %>
+                                    </p>
+                                    <!-- /* */ -->
+                                        <div class="mb-3 star-block">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div id="rating" class="rating text-secondary fs-4">
+                                                <i class="bi bi-star" data-value="1"></i>
+                                                <i class="bi bi-star" data-value="2"></i>
+                                                <i class="bi bi-star" data-value="3"></i>
+                                                <i class="bi bi-star" data-value="4"></i>
+                                                <i class="bi bi-star" data-value="5"></i>
+                                            </div>
+                                            <div class="text-muted"><span id="rating-value" class="rating-text">
+                                                    <%=book.bookRatings %>
+                                                </span> Star</div>
                                         </div>
-                                        <small class="text-body-secondary text-end"><%=book.lastUpdated %></small>
                                     </div>
-                                </form>
+                                    <!--  -->
+                                    <form id="reviewGrid" method="post">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="submit" id="view-<%= book.bId %>" name="view"
+                                                    class="btn btn-sm btn-outline-secondary"
+                                                    data-bookID="<%=book.bId %>" value="<%= book.bId %>"
+                                                    formaction="/view?_method=GET">View</button>
+                                                <button type="submit" id="edit-<%= book.bId %>" name="edit"
+                                                    class="btn btn-sm btn-outline-secondary"
+                                                    data-bookID="<%=book.bId %>" value="<%= book.bId %>"
+                                                    formaction="/edit?_method=GET">Edit</button>
+                                                <button type="submit" id="delete-<%= book.bId %>" name="delete"
+                                                    class="btn btn-sm btn-outline-danger" data-bookID="<%=book.bId %>"
+                                                    value="<%= book.bId %>"
+                                                    formaction="/delete?_method=DELETE">Delete</button>
+                                            </div>
+                                            <small class="text-body-secondary text-end">
+                                                <%=book.lastUpdated %>
+                                            </small>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <% }); %>
-                    <!-- end -->
+                        <% }); %>
+                            <!-- end -->
                 </div>
-                
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 my-3">
+                    <form action="/create?_method=GET" method="post">
+                        <button type="submit" id="create" name="create" class="btn btn-sm btn-outline-secondary" value="add">Create
+                            record</button>
+                    </form>
+                </div>
             </div>
         </div>
     </main>
-<%- include("partials\\footer.ejs") %>
+    <%- include("partials\\footer.ejs") %>

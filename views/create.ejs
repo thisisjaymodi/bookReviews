@@ -3,32 +3,31 @@
         <div class="album py-5 bg-body-tertiary">
             <div class="container my-5">
                 <!-- Back to Main -->
-                <div class="display-3 text-center under my-2">Edit Book Review</div>
+                <div class="display-3 text-center under my-2">Create Book Review</div>
                 <div class="my-3">
                     <button type="button" class="btn btn-secondary" onclick="confirmRedirect()"><i class="bi bi-arrow-left-circle"></i>
                         Main Page</button>
                 </div>
                 <!-- Start -->
-                 <% let { bId, title, bookImage, bookReview, bookRatings, lastUpdated  } = locals.book %>
-                <form id="update-review" action="/update?_method=PATCH" method="post">
+                <form id="create-review" action="/submit" method="post">
                     <!-- Image -->
                     <div class="row mb-3">
                         <picture>
                             <!-- <source srcset="..." type="image/svg+xml"> -->
-                            <img src="/images/image.jpg" class="img-fluid img-thumbnail" height="200" width="200"
+                            <img src="/images/image.jpg" class="img-fluid img-thumbnail" height="300" width="300"
                                 alt="Book-image">
                         </picture>
                     </div>
                     <!-- Title -->
                     <div class="mb-3 form-floating">
                         <input type="text" class="form-control" id="book-title" name="book-title" autofocus
-                            placeholder="enter Value" autocomplete="off" value="<%=title  %>">
+                            placeholder="enter Value" autocomplete="off" value="">
                         <label for="book-title">Book Title</label>
                     </div>
                     <!-- Review -->
                     <div class="mb-3 form-floating">
                         <textarea class="form-control" id="book-review" name="book-review" placeholder="enter Value"
-                            style="height: 200px" autocomplete="off" value="<%=bookReview  %>"><%=bookReview  %></textarea>
+                            style="height: 200px" autocomplete="off" value=""></textarea>
                         <label for="book-review">Book Review</label>
                     </div>
                     <!-- Ratings -->
@@ -42,14 +41,14 @@
                                 <i class="bi bi-star" data-value="4"></i>
                                 <i class="bi bi-star" data-value="5"></i>
                             </div>
-                            <div class="text-muted"><input type="hidden" class="rating-value" id="rating-value" name="rating-value" value="<%=bookRatings %>">
-                                                    <span class="dispVal"><%=bookRatings %></span>
+                            <div class="text-muted"><input type="hidden" class="rating-value" id="rating-value" name="rating-value" value="">
+                                                    <span class="dispVal">0</span>
                                                 Star</div>
                         </div>
                     </div>
                     <!-- Submit -->
                     <div class="mb-3">
-                        <button type="submit" name="update" class="btn btn-outline-secondary" value="<%=bId %>">Submit</button>
+                        <button type="submit" name="create" class="btn btn-outline-secondary" value="create">Create Record</button>
                     </div>
                 </form>
                 <!-- end -->
